@@ -1,0 +1,20 @@
+!!! 5
+%html
+  %head
+    %title HTML Cleaner Dammit!
+  %body
+    %form{:action => "/clean", :method => "post"}
+      %textarea{:name => "html", :rows => 20, :cols => 80}
+        = params[:html]
+      %p
+        %h3 Remove Tags:
+        %input{:name => "remove_tags", :style => "width: 600px", :value => "#{@remove_tags.join(',')}"}
+        %h3 Remove Attributes:
+        %input{:name => "remove_attrs", :style => "width: 600px", :value => "#{@remove_attrs.join(',')}"} 
+      %input{:type => "submit", :value => "Make it Shiny!"}
+    - if @cleaned
+      %textarea{:name => "cleaned", :rows => 20, :cols => 80}= @cleaned
+    - if @haml
+      %h3 HAML Too!
+      %textarea{:name => "haml", :rows => 20, :cols => 80}= @haml
+      
